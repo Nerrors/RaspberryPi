@@ -1,0 +1,90 @@
+background yes
+use_xft yes
+xftfont 123:size=8
+xftalpha 0.1
+update_interval 0.5
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+
+minimum_size 250 5
+maximum_width 500
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color grey
+default_shade_color white
+default_outline_color green
+alignment top_right
+gap_x 10
+gap_y 10
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 1
+override_utf8_locale no
+use_spacer right
+
+TEXT
+${font Arial:size=16}${color white}${alignc}Raspberry${color Ivory} Pi${font Arial:size=14}${color green}
+             
+${font Product Sans:weight=Bold:size=23}$alignc ${color0}${time %H:%M}
+${font Product Sans:size=12,8}$alignr ${color white}${exec date "+%x"}
+${font Arial:bold:size=10}${color white}SYSTEM ${color DarkSlateGray} ${hr 3}
+${font Arial:size=11}${color white}$sysname $kernel $alignr $machine
+Frequency $alignr${freq_g cpu0}Ghz
+Uptime $alignr${uptime}
+File System $alignr${fs_type}
+User Numbers: $alignr ${color0}${user_number}  ${user_names}
+Procces Numbers: $alignr ${color0}${exec ps -aux | wc -l}
+Usb Devices: $alignr ${color0}${exec lsusb | wc -l}
+#TeamViewer ID:$alignr ${color0}${exec teamviewer -info | grep -A0 "TeamViewer ID:" | tr -s [:space:] | tr -d [:alpha:]}
+#Enabled Services: $alignr ${color0}${exec systemctl list-unit-files | grep enabled | wc -l}
+#Disabled Services: $alignr ${color0}${exec systemctl list-unit-files | grep disabled | wc -l}
+List Of Repositories: $alignr ${color0}${exec grep -Erh ^deb /etc/apt/sources.list* | wc -l}
+
+${font Arial:bold:size=10}${color white}CPU ${color DarkSlateGray}${hr 3}
+${font Arial:bold:size=12}${color orange}Temprature: $alignr ${exec /opt/vc/bin/vcgencmd measure_temp | cut -c6-9} C
+$font${color white}
+CPU1 ${cpu cpu1}% ${cpubar cpu1}
+
+CPU2 ${cpu cpu2}% ${cpubar cpu2}
+
+CPU3 ${cpu cpu3}% ${cpubar cpu3}
+
+CPU4 ${cpu cpu4}% ${cpubar cpu4}
+${cpugraph blue} $color
+
+${font Arial:bold:size=10}${color white}MEMORY ${color DarkSlateGray}${hr 3}
+$font${color white}MEM $alignc $mem / $memmax $alignr $memperc%
+$membar
+$font${color DimGray}SWAP $alignc $swap / $swapmax $alignr $swapperc%
+$swapbar
+
+${font Arial:bold:size=10}${color white}HDD ${color DarkSlateGray}${hr 3}
+$font${color white}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_free_perc /}%
+${fs_bar /}
+
+$font${color white}Ext. Disk $alignc ${fs_used /media/pi/AC30A4AC30A47F48} / ${fs_size /media/pi/AC30A4AC30A47F48} $alignr ${fs_free_perc /media/pi/AC30A4AC30A47F48}%
+${fs_bar /media/pi/AC30A4AC30A47F48}
+
+${font Arial:bold:size=10}${color white}TOP PROCESSES ${color DarkSlateGray}${hr 3}
+
+${color white}${font Arial:size=16}${top_mem name 1}${alignr}${top mem 1} %
+${font Arial:size=14}${top_mem name 2}${alignr}${top mem 2} %
+${font Arial:size=12}${top_mem name 3}${alignr}${top mem 3} %
+${font Arial:size=10}${top_mem name 4}${alignr}${top mem 4} %
+${font Arial:size=10}${top_mem name 5}${alignr}${top mem 5} %
+
+${font Arial:bold:size=10}${color white}NETWORK ${color DarkSlateGray}${hr 3}
+${font Arial:size=11,8}${color cyan}Lan IP:$alignr ${addr eth0}
+External IP Address: ${font Arial:size=11,8} ${alignr} ${exec curl ifconfig.me}
+${color white}
+Lan Down: $alignr ${downspeed eth0} kb/s
+Lan Up: $alignr ${upspeed eth0} kb/s
+Lan Downloaded: $alignr ${totaldown eth0}
+Lan Uploaded: $alignr ${totalup eth0}

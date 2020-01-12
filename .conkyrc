@@ -69,9 +69,6 @@ ${font Arial:bold:size=10}${color white}HDD ${color DarkSlateGray}${hr 3}
 $font${color white}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_free_perc /}%
 ${fs_bar /}
 
-$font${color white}Ext. Disk $alignc ${fs_used /media/pi/AC30A4AC30A47F48} / ${fs_size /media/pi/AC30A4AC30A47F48} $alignr ${fs_free_perc /media/pi/AC30A4AC30A47F48}%
-${fs_bar /media/pi/AC30A4AC30A47F48}
-
 ${font Arial:bold:size=10}${color white}TOP PROCESSES ${color DarkSlateGray}${hr 3}
 
 ${color white}${font Arial:size=16}${top_mem name 1}${alignr}${top mem 1} %
